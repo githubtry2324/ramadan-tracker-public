@@ -62,9 +62,11 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
     return { daysLeft, percentage, dayNumber: diffDays + 1 }
   }
 
-  const [ramadanProgress, setRamadanProgress] = useState(getRamadanProgress())
+  // Start with Day 1, then calculate on client to avoid SSR timezone issues
+  const [ramadanProgress, setRamadanProgress] = useState({ daysLeft: 30, percentage: 100, dayNumber: 1 })
 
   useEffect(() => {
+    setRamadanProgress(getRamadanProgress())
     const interval = setInterval(() => setRamadanProgress(getRamadanProgress()), 60000)
     return () => clearInterval(interval)
   }, [])
