@@ -287,15 +287,21 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
       return
     }
     try {
-      await supabase!.from('participants').insert({ 
+      const { error } = await supabase!.from('participants').insert({ 
         name: newParticipantName.trim(), 
         family_id: family.id,
         order_index: participants.length 
       })
+      if (error) {
+        console.error('Error adding participant:', error)
+        alert('Failed to add racer: ' + error.message)
+        return
+      }
       setNewParticipantName('')
       setAddingParticipant(false)
     } catch (error) {
       console.error('Error adding participant:', error)
+      alert('Failed to add racer')
     }
   }
 
