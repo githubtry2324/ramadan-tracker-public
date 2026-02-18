@@ -274,6 +274,7 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
           }
         }
       }
+      loadData() // Refresh immediately
     } catch (error) {
       console.error('Error toggling juz:', error)
     }
@@ -299,6 +300,7 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
       }
       setNewParticipantName('')
       setAddingParticipant(false)
+      loadData() // Refresh immediately
     } catch (error) {
       console.error('Error adding participant:', error)
       alert('Failed to add racer')
@@ -312,6 +314,7 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
       await supabase!.from('participants').update({ name: newName.trim() }).eq('id', id)
       setEditingName(null)
       setNewName('')
+      loadData() // Refresh immediately
     } catch (error) {
       console.error('Error updating name:', error)
     }
@@ -322,6 +325,7 @@ export function QuranTracker({ familySlug }: QuranTrackerProps) {
     if (isDemoMode) { alert('Connect Supabase to delete participants'); return }
     try {
       await supabase!.from('participants').delete().eq('id', id)
+      loadData() // Refresh immediately
     } catch (error) {
       console.error('Error deleting participant:', error)
     }
