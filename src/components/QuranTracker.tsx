@@ -7,7 +7,7 @@ import confetti from 'canvas-confetti'
 import { Plus, Star, Check, Pencil, X, Moon, Flame, Trash2 } from 'lucide-react'
 
 const TOTAL_JUZ = 30
-const RAMADAN_START = new Date(2026, 1, 17) // Feb 17, 2026 - Ramadan starts at Maghrib tonight
+const RAMADAN_START = new Date(2026, 1, 17) // Feb 17, 2026 local time - Ramadan starts at Maghrib
 const RAMADAN_DAYS = 30
 
 interface ParticipantData extends Participant {
