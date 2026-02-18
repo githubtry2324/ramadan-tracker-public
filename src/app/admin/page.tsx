@@ -55,7 +55,7 @@ export default function AdminPage() {
       // Get participant counts
       const familiesWithCounts = await Promise.all(
         (familiesData || []).map(async (family) => {
-          const { count } = await supabase
+          const { count } = await supabase!
             .from('participants')
             .select('*', { count: 'exact', head: true })
             .eq('family_id', family.id)
